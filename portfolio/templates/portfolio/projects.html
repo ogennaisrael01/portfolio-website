@@ -6,8 +6,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #111;
-    color: #fff;
+    background: #f4f4f4; /* light background */
+    color: #111; /* dark text for readability */
     line-height: 1.6;
 }
 
@@ -38,17 +38,18 @@ body {
 }
 
 .project-card {
-    background: #1a1a1a;
+    background: #fff; /* light card background */
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* softer light shadow */
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .project-card img {
@@ -72,14 +73,14 @@ body {
 }
 
 .project-content p {
-    color: #ddd;
+    color: #444;
     font-size: 0.95rem;
     margin-bottom: 0.5rem;
 }
 
 .tech-stack {
     font-size: 0.85rem;
-    color: #bbb;
+    color: #666;
     margin-bottom: 0.5rem;
 }
 
@@ -103,6 +104,7 @@ body {
     }
 }
 </style>
+
 </head>
 <body>
 
