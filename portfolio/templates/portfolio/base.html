@@ -12,19 +12,94 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <!-- Header / Navigation -->
-  <header>
-    <div class="logo">Ogenna</div>
-    <nav>
-      <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'projects' %}">Projects</a></li>
-        <li><a href="{% url 'contact' %}">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <<style>
+/* Modern Responsive Header */
+header {
+  background: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff9800;
+  text-decoration: none;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff6b6b;
+}
+
+/* Hamburger Menu */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Responsive Nav */
+@media (max-width: 768px) {
+  nav {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    width: 200px;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  .nav-toggle:checked + nav {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+</style>
+
+<header>
+  <a href="#" class="logo">MyPortfolio</a>
+
+  <!-- Hamburger toggle -->
+  <label for="nav-toggle" class="menu-icon">&#9776;</label>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+  <!-- Nav links -->
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'contact' %}">Contact</a>
+    <a href="{% url 'about' %}">About</a>
+  </nav>
+</header>
 
 {% block content %}
 
