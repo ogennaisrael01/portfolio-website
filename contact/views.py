@@ -24,7 +24,6 @@ def contact(request):
                     Message:
                     {contact_message.message}
                     """,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[settings.EMAIL_HOST_USER],
                     fail_silently=False,
                 )
