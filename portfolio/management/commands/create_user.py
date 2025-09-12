@@ -1,14 +1,17 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from django.db.utils import OperationalError
-import os
-from dotenv import load_dotenv
-load_dotenv()
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        try:
-            if not User.objects.filter(username="ogenna").exists():
-                User.objects.create_superuser(username="ogenna", email="ogennaisrael@gmail.com", password=os.getenv("YourStrongPassword"))
-        except OperationalError:
-            self.stdout.write("Database not ready yet, skipping user creation.")
+    help = "Create default superuser if not exists"
+
+    def handle(self, *args, **kwargs):
+        username = "ogenna"
+        email = "ogenna@example.com"
+        password = "password123"  # Change this after first login!
+
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(username=username, email=email, password=password)
+            self.stdout.write(self.style.SUCCESS(f"Superuser '{username}' created with password '{password}'"))
+        else:
+            self.stdout.write(self.style.WARNING(f"Superuser '{username}' already exists"))
+
