@@ -87,7 +87,9 @@ WSGI_APPLICATION = 'portfolio_site.wsgi.application'
 DATABASES ={
     'default': dj_database_url.config(
         default=f'postgresql://{os.getenv("USER")}:{os.getenv("PASSWORD")}@{os.getenv('HOST')}:{os.getenv("PORT")}/{os.getenv("NAME")}',
-        conn_max_age=600
+        conn_max_age=600,
+        ssl_require=True
+
     )
 }
 
