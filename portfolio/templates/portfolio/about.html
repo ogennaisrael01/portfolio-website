@@ -1,337 +1,66 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
-
-{% block style %}
-<style>
-/* === Global Styles === */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f9f9f9; /* Light background */
-    color: #222; /* Darker text */
-    line-height: 1.6;
-}
-
-/* === Header === */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255,255,255,0.95); /* Light transparent header */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    color: #ff6b6b;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #ff6b6b;
-}
-
-/* === Layout Container === */
-.container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-/* === Hero Section === */
-.hero {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-}
-
-.hero .profile-pic img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 4px solid #ccc;
-    object-fit: cover;
-}
-
-.hero .details {
-    flex: 1;
-}
-
-.hero .details h1 {
-    font-size: 2.5rem;
-    color: #ff9800;
-    margin-bottom: 0.5rem;
-}
-
-.hero .details p {
-    color: #444;
-    margin: 0.3rem 0;
-}
-
-.hire-btn {
-    display: inline-block;
-    background: #ff9800;
-    color: #fff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: background 0.3s;
-}
-
-.hire-btn:hover {
-    background: #e68900;
-}
-
-/* === Section Titles === */
-section h2 {
-    font-size: 1.8rem;
-    color: #ff9800;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-/* === Skills Section === */
-.skills-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.skill {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.skill i {
-    font-size: 2rem;
-    color: #ff9800;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.progress-bar {
-    background: #eee;
-    height: 8px;
-    border-radius: 4px;
-    margin-top: 0.5rem;
-}
-
-.progress-bar div {
-    height: 8px;
-    background: #ff9800;
-    border-radius: 4px;
-}
-
-/* === Timeline (Experience & Education) === */
-.timeline {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.timeline li {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    border: 1px solid #e0e0e0;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.timeline h3 {
-    margin: 0;
-    color: #ff9800;
-    font-size: 1.2rem;
-}
-
-.timeline span {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* === Certificates Section === */
-.certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.certificate-card {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
-}
-
-.certificate-card:hover {
-    transform: translateY(-5px);
-}
-
-.certificate-card img {
-    max-width: 100%;
-    height: 140px;
-    object-fit: contain;
-    margin-bottom: 0.8rem;
-    border-radius: 6px;
-    background: #f0f0f0;
-    padding: 0.5rem;
-}
-
-.certificate-card h3 {
-    color: #ff9800;
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
-}
-
-.certificate-card span {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .hero .profile-pic img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .hero .details h1 {
-        font-size: 2rem;
-    }
-
-    section {
-        text-align: left;
-    }
-}
-</style>
-{% endblock %}
-
+{% block title %}About — Ogenna Israel{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container reveal">
+  <section class="hero-profile">
+    <div class="profile-pic">
+      <img src="{% static 'images/profile.jpg' %}" alt="Ogenna Israel — Backend Developer">
+    </div>
+    <div class="details">
+      <h1 style="margin:0 0 0.5rem;">Ogenna Israel</h1>
+      <p style="margin:0; color:var(--muted);"><strong>Availability:</strong> Freelance, Remote & Hybrid</p>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="profile-pic">
-            <img src="{% static 'images/profile.jpg' %}" alt="Profile Picture">
-        </div>
-        <div class="details">
-            <h1><strong>Name:</strong> Ogenna Israel</h1>
-            <p><strong>Availability:</strong> Freelance, Remote & Hybrid</p>
-            <p>
-                Innovative and passionate Backend Developer with a focus on automation, scalability, 
-                and problem-solving. I thrive on transforming ideas into efficient solutions and enjoy 
-                the challenge of optimizing backend systems for speed and reliability.
-            </p>
-            <p>
-                <a href="{% url 'contact' %}" class="hire-btn">Hire Me</a>
-                <a href="{% static 'resume.pdf' %}" class="hire-btn" download>
-                    <i class="fas fa-download"></i> Download Resume
-                </a>
-            </p>
-        </div>
-    </section>
+      <p style="margin-top:0.75rem; color:#444; max-width:720px;">
+        Innovative and passionate Backend Developer focused on automation, scalability, and solving hard problems.
+        I build APIs with Django, write tests, and love working on performant systems.
+      </p>
 
-    <!-- Skills Section -->
-    <section>
-        <h2>Skills</h2>
-        <div class="skills-list">
-            {% for skill in skills %}
-            <div class="skill">
-                {% if skill.icon %}
-                    <i class="{{ skill.icon }}"></i>
-                {% endif %}
-                <strong>{{ skill.name }}</strong>
-                <div class="progress-bar">
-                    <div style="width:{{ skill.level }}%"></div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
+      <div style="margin-top:0.75rem;">
+        <a href="{% url 'contact' %}" class="btn btn-primary">Hire Me</a>
+        <a href="{% static 'resume.pdf' %}" class="btn btn-ghost" download style="margin-left:0.5rem;"><i class="fas fa-download"></i> Resume</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Experience Section -->
-    <section>
-        <h2>Experience</h2>
-        <ul class="timeline">
-            {% for exp in experience %}
-            <li>
-                <h3>{{ exp.position }} — {{ exp.company }}</h3>
-                <span>{{ exp.start_date|date:"M Y" }} - {% if exp.current %}Present{% else %}{{ exp.end_date|date:"M Y" }}{% endif %}</span>
-                <p>{{ exp.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
+  <section style="margin-top:1.25rem;">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      {% for skill in skills %}
+      <div class="skill card reveal">
+        {% if skill.icon %}<i class="{{ skill.icon }}" style="color:var(--accent); font-size:1.4rem;"></i>{% endif %}
+        <div style="margin-top:0.4rem;"><strong>{{ skill.name }}</strong></div>
+        <div style="margin-top:0.5rem;" class="progress-bar"><div style="width:{{ skill.level }}%"></div></div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section>
-        <h2>Education</h2>
-        <ul class="timeline">
-            {% for edu in education %}
-            <li>
-                <h3>{{ edu.degree }} — {{ edu.institution }}</h3>
-                <span>{{ edu.start_date|date:"M Y" }} - {% if edu.current %}Present{% else %}{{ edu.end_date|date:"M Y" }}{% endif %}</span>
-                <p>{{ edu.field_of_study }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
+  <section style="margin-top:1.25rem;">
+    <h2>Experience</h2>
+    <ul class="timeline">
+      {% for exp in experience %}
+      <li class="card reveal">
+        <h3 style="margin:0;">{{ exp.position }} • {{ exp.company }}</h3>
+        <small style="color:var(--muted);">{{ exp.start_date|date:"M Y" }} — {% if exp.current %}Present{% else %}{{ exp.end_date|date:"M Y" }}{% endif %}</small>
+        <p style="margin-top:0.5rem; color:#444;">{{ exp.description }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
-    <!-- Certificates Section -->
-    <section>
-        <h2>Certificates</h2>
-        <div class="certificates-grid">
-            {% for cert in certificates %}
-            <div class="certificate-card">
-                <img src="{{ cert.image.url }}" alt="{{ cert.title }}">
-                <h3>{{ cert.title }}</h3>
-                <span>Issued: {{ cert.issue_date|date:"M Y" }}</span>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
+  <section style="margin-top:1.25rem;">
+    <h2>Certificates</h2>
+    <div class="certificates-grid">
+      {% for cert in certificates %}
+      <div class="certificate-card card reveal">
+        <img src="{{ cert.image.url }}" alt="{{ cert.title }}">
+        <h3 style="margin:0.5rem 0 0;">{{ cert.title }}</h3>
+        <small style="color:var(--muted);">Issued: {{ cert.issue_date|date:"M Y" }}</small>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
 </div>
 {% endblock %}

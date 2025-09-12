@@ -1,65 +1,51 @@
+{% extends 'portfolio/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <title>Contact Me</title>
-</head>
-<body>
-  <!-- ====== HEADER ====== -->
-  <!-- Header / Navigation -->
-  <header>
-    <div class="logo">Ogenna</div>
-    <nav>
-      <ul>
-        <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
-        <li><a href="{% url 'projects' %}">Projects</a></li>
-        <li><a href="{% url 'contact' %}">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+{% load widget_tweaks %}
 
-  <!-- ====== CONTACT SECTION ====== -->
-  <section id="contact" class="contact-section">
-    <div class="contact-container">
+{% block title %}Contact — Ogenna Israel{% endblock %}
+
+{% block content %}
+<section class="contact-section reveal">
+  <div class="container">
+    <div class="contact-container card">
       <h2 class="contact-title">Let’s Work Together</h2>
-      <p class="contact-subtitle">Got a project in mind or just want to say hi? Drop me a message below 👇</p>
+      <p class="contact-subtitle">Got a project or just want to say hi? Drop a message below.</p>
 
-      <form method="post" class="contact-form">
+      <form method="post" class="contact-form" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
 
         <div class="form-group">
+          <label for="{{ form.name.id_for_label }}" class="hide-visually">Your name</label>
           <span class="icon">👤</span>
-          {{ form.name }}
+          {{ form.name.errors }}
+          {{ form.name|add_class:"" }}
         </div>
 
         <div class="form-group">
+          <label for="{{ form.email.id_for_label }}" class="hide-visually">Your email</label>
           <span class="icon">📧</span>
-          {{ form.email }}
+          {{ form.email.errors }}
+          {{ form.email|add_class:"" }}
         </div>
 
         <div class="form-group">
+          <label for="{{ form.subject.id_for_label }}" class="hide-visually">Subject</label>
           <span class="icon">📝</span>
-          {{ form.subject }}
+          {{ form.subject.errors }}
+          {{ form.subject|add_class:"" }}
         </div>
 
         <div class="form-group">
+          <label for="{{ form.message.id_for_label }}" class="hide-visually">Message</label>
           <span class="icon">💬</span>
-          {{ form.message }}
+          {{ form.message.errors }}
+          {{ form.message|add_class:"" }}
         </div>
 
         <button type="submit" class="btn-submit">🚀 Send Message</button>
       </form>
     </div>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="main-footer">
-    <p>© {{ now|date:"Y" }} Ogenna | Backend Developer</p>
-  </footer>
-</body>
-</html>
+  </div>
+</section>
+{% endblock %}

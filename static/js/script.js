@@ -1,33 +1,55 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const texts = [
-    "Backend Developer",
-    "Python & Django Specialist",
-    "Problem Solver",
-    "I build scalable web applications"
-  ];
-  
-  let count = 0;
-  let index = 0;
-  let currentText = "";
-  let letter = "";
-  const typingElement = document.getElementById("typing-text");
+// script.js
+// Small utilities: close mobile nav on link click, typing effect, reveal on scroll
 
-  function type() {
-    if (count === texts.length) {
-      count = 0;
+document.addEventListener('DOMContentLoaded', function () {
+  // Close mobile nav when a link is clicked
+  const navToggle = document.querySelector('#nav-toggle');
+  const navLinks = document.querySelectorAll('nav a');
+  navLinks.forEach(a => a.addEventListener('click', () => {
+    if (navToggle && window.getComputedStyle(document.querySelector('.menu-icon')).display !== 'none') {
+      navToggle.checked = false;
     }
-    currentText = texts[count];
-    letter = currentText.slice(0, ++index);
+  }));
 
-    typingElement.textContent = letter;
-    if (letter.length === currentText.length) {
-      count++;
-      index = 0;
-      setTimeout(type, 1200); // pause before next word
-    } else {
-      setTimeout(type, 120);
+  // Typing effect (home page)
+  const typingEl = document.getElementById('typing-text');
+  if (typingEl) {
+    const phrases = [
+      'Backend Developer • Django & Python',
+      'Automation • API Design • Testing',
+      'Building scalable, reliable systems'
+    ];
+    let pi = 0, ci = 0, typing = true;
+    const typeSpeed = 40, pause = 1200, eraseSpeed = 20;
+    function typeLoop() {
+      const phrase = phrases[pi];
+      if (typing) {
+        typingEl.textContent = phrase.slice(0, ++ci);
+        if (ci === phrase.length) {
+          typing = false;
+          setTimeout(typeLoop, pause);
+        } else setTimeout(typeLoop, typeSpeed);
+      } else {
+        typingEl.textContent = phrase.slice(0, --ci);
+        if (ci === 0) {
+          typing = true;
+          pi = (pi + 1) % phrases.length;
+          setTimeout(typeLoop, 200);
+        } else setTimeout(typeLoop, eraseSpeed);
+      }
     }
+    typeLoop();
   }
 
-  type();
+  // Reveal on scroll (simple IntersectionObserver)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 });
