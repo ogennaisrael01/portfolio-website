@@ -24,14 +24,16 @@ def contact(request):
                     Message:
                     {contact_message.message}
                     """,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=[settings.EMAIL_HOST_USER],
-                    fail_silently=False,
-                )
+                    fail_silently=False
+            )
+            
                 messages.success(request, 'Thank you! Your message has been sent successfully.')
             except Exception as e:
                 messages.warning(request, 'Your message was saved but email notification failed.')
             
-            return redirect('home')
+            return redirect('contact')
     else:
         form = ContactForm()
     
