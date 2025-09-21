@@ -17,9 +17,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -140,8 +138,10 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 STATIC_URL = '/static/'
 
+
+
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static", 
 ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
